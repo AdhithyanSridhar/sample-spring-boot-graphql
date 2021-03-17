@@ -16,6 +16,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface CountryRepository extends CrudRepository<Country, String> {
 
-    Iterable<Country> findByContinentId(String id);
+	Iterable<Country> findByContinentId(String id);
 
 }

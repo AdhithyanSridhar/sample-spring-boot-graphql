@@ -24,23 +24,23 @@ import org.springframework.test.context.junit4.SpringRunner;
 @RunWith(SpringRunner.class)
 public class CountryRepositoryTest {
 
-    @Autowired
-    private CountryRepository countryRepository;
-    @Autowired
-    private TestEntityManager testEntityManager;
+	@Autowired
+	private CountryRepository countryRepository;
+	@Autowired
+	private TestEntityManager testEntityManager;
 
-    @Test
-    public void findByContinentId_should_return_empty_iterable_if_called_with_null() throws Exception {
-        assertThat(countryRepository.findByContinentId(null)).isNotNull().isEmpty();
-    }
+	@Test
+	public void findByContinentId_should_return_empty_iterable_if_called_with_null() throws Exception {
+		assertThat(countryRepository.findByContinentId(null)).isNotNull().isEmpty();
+	}
 
-    @Test
-    public void findByContinentId_should_return_related_countries() throws Exception {
-        Continent continent = testEntityManager.persistAndFlush(new Continent("Continent"));
-        Country country = new Country("country");
-        country.setContinent(continent);
-        country = testEntityManager.persistAndFlush(country);
+	@Test
+	public void findByContinentId_should_return_related_countries() throws Exception {
+		Continent continent = testEntityManager.persistAndFlush(new Continent("Continent"));
+		Country country = new Country("country");
+		country.setContinent(continent);
+		country = testEntityManager.persistAndFlush(country);
 
-        assertThat(countryRepository.findByContinentId(continent.getId())).isNotNull().containsExactly(country);
-    }
+		assertThat(countryRepository.findByContinentId(continent.getId())).isNotNull().containsExactly(country);
+	}
 }

@@ -16,21 +16,27 @@ import com.github.ingogriebsch.sample.spring.boot.graphql.model.Continent;
 import com.github.ingogriebsch.sample.spring.boot.graphql.repository.ContinentRepository;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
-@RequiredArgsConstructor
 public class Query implements GraphQLQueryResolver {
 
-    @NonNull
-    private final ContinentRepository continentRepository;
+	private final ContinentRepository continentRepository;
 
-    public Iterable<Continent> continents() {
-        return continentRepository.findAll();
-    }
+	@Autowired
+	public Query(ContinentRepository continentRepository) {
+		super();
+		this.continentRepository = continentRepository;
+	}
 
-    public Optional<Continent> continentByName(@NonNull String name) {
-        return continentRepository.findByName(name);
-    }
+	public Iterable<Continent> continents() {
+		return continentRepository.findAll();
+	}
+
+	public Optional<Continent> continentByName(@NonNull String name) {
+		return continentRepository.findByName(name);
+	}
 
 }

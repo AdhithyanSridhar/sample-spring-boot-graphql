@@ -12,6 +12,32 @@ If you are starting up the service it is running under <http://localhost:8080> a
 *   <http://localhost:8080/graphql> houses the endpoint the GraphQL schema is mapped to allow you to execute the queries, mutations, subscriptions.
 *   <http://localhost:8080/graphiql> houses a little UI allowing you to play with what is defined in the schema (it in fact uses the /graphql endpoint).
 
+##sample input
+```{
+  continents {
+    id
+    name
+    population
+    countries {
+      density
+    }
+  }
+}
+or
+{
+  continents {
+    id
+    name
+    area
+    population
+    countries {
+      density
+    }
+  }
+}
+
+```
+
 ## Used frameworks
 Collection of the mainly used frameworks in this project. There are more, but they are not that present inside the main use case therefore they are not listed here.
 

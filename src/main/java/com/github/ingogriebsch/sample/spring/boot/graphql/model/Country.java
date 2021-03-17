@@ -11,38 +11,83 @@ package com.github.ingogriebsch.sample.spring.boot.graphql.model;
 
 import static java.util.UUID.randomUUID;
 
-import static lombok.AccessLevel.PACKAGE;
-import static lombok.AccessLevel.PRIVATE;
-
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.NonNull;
-import lombok.Setter;
-
-@AllArgsConstructor
-@Data
 @Entity
-@NoArgsConstructor(access = PACKAGE)
 public class Country {
 
-    @Id
-    private final String id = randomUUID().toString();
+	@Id
+	private final String id = randomUUID().toString();
 
-    @Setter(PRIVATE)
-    private String name;
-    private Integer area;
-    private Long population;
-    private Integer density;
+	private String name;
+	private Integer area;
+	private Long population;
+	private Integer density;
 
-    @ManyToOne
-    private Continent continent;
+	@ManyToOne
+	private Continent continent;
 
-    public Country(@NonNull String name) {
-        this.name = name;
-    }
+	public Country() {
+		super();
+	}
+
+	public Country(String name, Integer area, Long population, Integer density, Continent continent) {
+		super();
+		this.name = name;
+		this.area = area;
+		this.population = population;
+		this.density = density;
+		this.continent = continent;
+	}
+
+	public Country(String name) {
+		this.name = name;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public Integer getArea() {
+		return area;
+	}
+
+	public void setArea(Integer area) {
+		this.area = area;
+	}
+
+	public Long getPopulation() {
+		return population;
+	}
+
+	public void setPopulation(Long population) {
+		this.population = population;
+	}
+
+	public Integer getDensity() {
+		return density;
+	}
+
+	public void setDensity(Integer density) {
+		this.density = density;
+	}
+
+	public Continent getContinent() {
+		return continent;
+	}
+
+	public void setContinent(Continent continent) {
+		this.continent = continent;
+	}
+
+	public String getId() {
+		return id;
+	}
+
 }

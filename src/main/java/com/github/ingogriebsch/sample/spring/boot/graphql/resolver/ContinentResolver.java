@@ -15,16 +15,22 @@ import com.github.ingogriebsch.sample.spring.boot.graphql.model.Country;
 import com.github.ingogriebsch.sample.spring.boot.graphql.repository.CountryRepository;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
-@RequiredArgsConstructor
 public class ContinentResolver implements GraphQLResolver<Continent> {
 
-    @NonNull
-    private final CountryRepository countryRepository;
+	private final CountryRepository countryRepository;
 
-    public Iterable<Country> getCountries(@NonNull Continent continent) {
-        return countryRepository.findByContinentId(continent.getId());
-    }
+	@Autowired
+	public ContinentResolver(CountryRepository countryRepository) {
+		super();
+		this.countryRepository = countryRepository;
+	}
+
+	public Iterable<Country> getCountries(@NonNull Continent continent) {
+		return countryRepository.findByContinentId(continent.getId());
+	}
 }

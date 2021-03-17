@@ -18,6 +18,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ContinentRepository extends CrudRepository<Continent, String> {
 
-    Optional<Continent> findByName(String name);
+	Optional<Continent> findByName(String name);
 
 }

@@ -11,33 +11,60 @@ package com.github.ingogriebsch.sample.spring.boot.graphql.model;
 
 import static java.util.UUID.randomUUID;
 
-import static lombok.AccessLevel.PACKAGE;
-import static lombok.AccessLevel.PRIVATE;
-
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.NonNull;
-import lombok.Setter;
-
-@AllArgsConstructor
-@Data
 @Entity
-@NoArgsConstructor(access = PACKAGE)
 public class Continent {
 
-    @Id
-    private final String id = randomUUID().toString();
+	@Id
+	private final String id = randomUUID().toString();
 
-    @Setter(PRIVATE)
-    private String name;
-    private Integer area;
-    private Long population;
+	private String name;
+	private Integer area;
+	private Long population;
 
-    public Continent(@NonNull String name) {
-        this.name = name;
-    }
+	public Continent() {
+		super();
+	}
+
+	public Continent(String name, Integer area, Long population) {
+		super();
+		this.name = name;
+		this.area = area;
+		this.population = population;
+	}
+
+	public Continent(String name) {
+		this.name = name;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public Integer getArea() {
+		return area;
+	}
+
+	public void setArea(Integer area) {
+		this.area = area;
+	}
+
+	public Long getPopulation() {
+		return population;
+	}
+
+	public void setPopulation(Long population) {
+		this.population = population;
+	}
+
+	public String getId() {
+		return id;
+	}
+
 }

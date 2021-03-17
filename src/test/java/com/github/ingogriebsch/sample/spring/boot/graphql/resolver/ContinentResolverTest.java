@@ -25,25 +25,25 @@ import org.mockito.runners.MockitoJUnitRunner;
 @RunWith(MockitoJUnitRunner.class)
 public class ContinentResolverTest {
 
-    @Mock
-    private CountryRepository countryRepository;
+	@Mock
+	private CountryRepository countryRepository;
 
-    @InjectMocks
-    private ContinentResolver continentResolver;
+	@InjectMocks
+	private ContinentResolver continentResolver;
 
-    @Test(expected = NullPointerException.class)
-    public void getCountries_should_throw_exception_if_called_with_null() throws Exception {
-        continentResolver.getCountries(null);
-    }
+	@Test(expected = NullPointerException.class)
+	public void getCountries_should_throw_exception_if_called_with_null() throws Exception {
+		continentResolver.getCountries(null);
+	}
 
-    @Test
-    public void getCountries_should_return_related_countries() throws Exception {
-        Continent continent = new Continent("Continent");
-        Country country = new Country("Country");
+	@Test
+	public void getCountries_should_return_related_countries() throws Exception {
+		Continent continent = new Continent("Continent");
+		Country country = new Country("Country");
 
-        given(countryRepository.findByContinentId(continent.getId())).willReturn(newHashSet(country));
+		given(countryRepository.findByContinentId(continent.getId())).willReturn(newHashSet(country));
 
-        Iterable<Country> countries = continentResolver.getCountries(continent);
-        assertThat(countries).isNotNull().containsExactly(country);
-    }
+		Iterable<Country> countries = continentResolver.getCountries(continent);
+		assertThat(countries).isNotNull().containsExactly(country);
+	}
 }
